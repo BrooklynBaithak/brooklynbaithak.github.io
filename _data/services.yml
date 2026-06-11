@@ -4,30 +4,39 @@ groups:
   - heading: For Attendees
     icon: fa-users
     featured: false
-    body: |
-      - Intimate, living room–style concerts in Brooklyn homes and community spaces
+    body: >
+      - Intimate, living room–style concerts in Brooklyn homes and community
+      spaces
+
       - Direct access to talented emerging South Asian artists
+
       - A welcoming, inclusive community of music lovers, yipeee
   - heading: For Performers
     icon: fa-music
     featured: true
     cta_text: Apply to Perform
     cta_url: https://docs.google.com/forms/d/1grbELIQdrH7OrKGYsE7pnwqxbf9R04k6-9vZu9xZ6ss/viewform?pli=1&edit_requested=true
-    body: |
-      - A dedicated platform to share your art with an engaged, respectful audience
+    body: >
+      - A dedicated platform to share your art with an engaged, respectful
+      audience
+
       - Professional sound setup and performance support
+
       - Marketing and social media promotion of your performance
+
       - Video recording of your performance for your portfolio
+
       - Community mentorship and networking with fellow artists
   - heading: For Sponsors
     icon: fa-gift
     featured: false
     cta_text: Become a Sponsor
     cta_url: mailto:brooklynbaithak@gmail.com
-    body: |
-      - Prominent brand visibility at intimate, high-engagement events
-      - Access to a diverse, culturally engaged South Asian diaspora audience
-      - Social media features and co-branded content opportunities
-      - Alignment with authentic cultural programming and community impact
-      - VIP event access and exclusive networking opportunities
-      - Custom partnership packages tailored to your goals
+    body: |-
+      * Prominent brand visibility at intimate, high-engagement events
+      * Access to a diverse, culturally engaged South Asian diaspora audience
+      * Social media features and co-branded content opportunities
+      * Alignment with authentic cultural programming and community impact
+      * VIP event access and exclusive networking opportunities
+      * Custom partnership packages tailored to your goals
+      * Party
