@@ -64,7 +64,7 @@ collections:
               - { label: "Featured", name: "featured", widget: "boolean", default: false }
               - { label: "CTA Text", name: "cta_text", widget: "string", required: false }
               - { label: "CTA URL", name: "cta_url", widget: "string", required: false }
-              - { label: "Items", name: "items", widget: "list", field: { name: "item", label: "Item", widget: "string" } }
+              - { label: "Body Content", name: "body", widget: "markdown" }
 
       - name: "events"
         label: "Events"

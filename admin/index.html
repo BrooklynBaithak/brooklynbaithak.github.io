@@ -117,38 +117,28 @@
             )
           );
         } else if (slug === 'services') {
-          var groups = entry.getIn(['data', 'groups']);
+          var widgetsForGroups = this.props.widgetsFor('groups');
           var groupElements = [];
-          if (groups) {
-            groups.forEach(function(group, index) {
-              var itemsList = group.get('items');
-              var itemElements = [];
-              if (itemsList) {
-                itemsList.forEach(function(item, i) {
-                  itemElements.push(
-                    h('div', { className: 'bb-service-item', key: i },
-                      h('i', { className: 'fa fa-check-circle' }),
-                      h('span', {}, item)
-                    )
-                  );
-                });
-              }
+          if (widgetsForGroups) {
+            widgetsForGroups.forEach(function(groupWidget, index) {
+              var data = groupWidget.get('data');
+              if (!data) return;
               var cta = null;
-              if (group.get('cta_text')) {
-                cta = h('a', { className: 'btn btn-xl btn-sm-services', href: group.get('cta_url') || '#' }, group.get('cta_text'));
+              if (data.get('cta_text')) {
+                cta = h('a', { className: 'btn btn-xl btn-sm-services', href: data.get('cta_url') || '#' }, data.get('cta_text'));
               }
-              var featuredClass = group.get('featured') ? ' bb-service-card-featured' : '';
+              var featuredClass = data.get('featured') ? ' bb-service-card-featured' : '';
               groupElements.push(
                 h('div', { className: 'col-md-4', key: index },
                   h('div', { className: 'bb-service-card' + featuredClass },
                     h('div', { className: 'bb-service-icon' },
                       h('span', { className: 'fa-stack fa-4x' },
                         h('i', { className: 'fa fa-circle fa-stack-2x text-primary' }),
-                        h('i', { className: 'fa ' + (group.get('icon') || '') + ' fa-stack-1x fa-inverse' })
+                        h('i', { className: 'fa ' + (data.get('icon') || '') + ' fa-stack-1x fa-inverse' })
                       )
                     ),
-                    h('h3', { className: 'service-heading' }, group.get('heading')),
-                    h('div', { className: 'bb-service-list' }, itemElements),
+                    h('h3', { className: 'service-heading' }, data.get('heading')),
+                    h('div', { className: 'bb-service-body' }, groupWidget.getIn(['widgets', 'body'])),
                     cta
                   )
                 )
