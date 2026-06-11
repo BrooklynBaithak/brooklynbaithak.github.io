@@ -1,15 +1,16 @@
-- quote: >
-    "It’s been great to connect with the community through music, and especially to connect with them through songs that are so loved."
-  author: Anika Hossain
-  role: Vocalist
+testimonials:
+  - quote: >
+      "It’s been great to connect with the community through music, and especially to connect with them through songs that are so loved."
+    author: Anika Hossain
+    role: Vocalist
 
-- quote: >
-    "Brooklyn Baithak has been one of the few Spaces where music feels genuinely communal.
-    Every Baithak reminds me how powerful it is when strangers sit close, listen deeply, and make something together."
-  author: Usama Khan
-  role: Guitarist and Vocalist
+  - quote: >
+      "Brooklyn Baithak has been one of the few Spaces where music feels genuinely communal.
+      Every Baithak reminds me how powerful it is when strangers sit close, listen deeply, and make something together."
+    author: Usama Khan
+    role: Guitarist and Vocalist
 
-- quote: >
-    "There's something magical about Baithak :) You walk in for the music and stay for the people." 
-  author: Poorna Mujumdar
-  role: Vocalist
+  - quote: >
+      "There's something magical about Baithak :) You walk in for the music and stay for the people." 
+    author: Poorna Mujumdar
+    role: Vocalist

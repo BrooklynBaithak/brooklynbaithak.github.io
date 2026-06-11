@@ -1,0 +1,185 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# This allows local development testing using `npx decap-server`
+local_backend: true
+
+media_folder: "img"
+public_folder: "/img"
+
+collections:
+  - name: "config"
+    label: "Site Settings"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "site_config"
+        label: "General Settings"
+        file: "_config.yml"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - name: "social"
+            label: "Social Links"
+            widget: "list"
+            fields:
+              - { label: "Platform Title", name: "title", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+          - name: "people"
+            label: "Team Members"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Picture Key", name: "pic", widget: "string" }
+              - { label: "Position", name: "position", widget: "string" }
+              - { label: "Bio", name: "bio", widget: "text" }
+              - name: "social"
+                label: "Social Links"
+                widget: "list"
+                fields:
+                  - { label: "Platform Title", name: "title", widget: "string" }
+                  - { label: "URL", name: "url", widget: "string" }
+
+  - name: "data"
+    label: "Data Files"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "services"
+        label: "Services"
+        file: "_data/services.yml"
+        fields:
+          - { label: "Subheading", name: "subheading", widget: "text" }
+          - name: "groups"
+            label: "Groups"
+            widget: "list"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Icon Class", name: "icon", widget: "string" }
+              - { label: "Featured", name: "featured", widget: "boolean", default: false }
+              - { label: "CTA Text", name: "cta_text", widget: "string", required: false }
+              - { label: "CTA URL", name: "cta_url", widget: "string", required: false }
+              - { label: "Items", name: "items", widget: "list", field: { label: "Item", widget: "string" } }
+
+      - name: "events"
+        label: "Events"
+        file: "_data/events.yml"
+        fields:
+          - name: "events"
+            label: "Events List"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Month (e.g. JUL)", name: "month", widget: "string" }
+              - { label: "Day (number)", name: "day", widget: "number", value_type: "int" }
+              - { label: "Year", name: "year", widget: "number", value_type: "int" }
+              - { label: "Location", name: "location", widget: "string" }
+              - { label: "Time", name: "time", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "Ticket URL", name: "url", widget: "string" }
+              - { label: "Featured", name: "featured", widget: "boolean", default: false }
+
+      - name: "faq"
+        label: "FAQ"
+        file: "_data/faq.yml"
+        fields:
+          - name: "faq"
+            label: "FAQ List"
+            widget: "list"
+            fields:
+              - { label: "Question", name: "question", widget: "string" }
+              - { label: "Answer", name: "answer", widget: "markdown" }
+
+      - name: "impact"
+        label: "Impact Stats"
+        file: "_data/impact.yml"
+        fields:
+          - { label: "Subheading", name: "subheading", widget: "text" }
+          - name: "stats"
+            label: "Statistics"
+            widget: "list"
+            fields:
+              - { label: "Number", name: "number", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Icon Class", name: "icon", widget: "string" }
+
+      - name: "testimonials"
+        label: "Testimonials"
+        file: "_data/testimonials.yml"
+        fields:
+          - name: "testimonials"
+            label: "Testimonials List"
+            widget: "list"
+            fields:
+              - { label: "Quote", name: "quote", widget: "text" }
+              - { label: "Author", name: "author", widget: "string" }
+              - { label: "Role", name: "role", widget: "string" }
+
+      - name: "mission"
+        label: "Mission"
+        file: "_data/mission.yml"
+        fields:
+          - { label: "Body Text", name: "body", widget: "text" }
+          - { label: "Tagline", name: "tagline", widget: "text" }
+          - name: "pillars"
+            label: "Pillars"
+            widget: "list"
+            fields:
+              - { label: "Icon Emoji/Char", name: "icon", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Text Description", name: "text", widget: "text" }
+
+      - name: "press"
+        label: "Press & Media"
+        file: "_data/press.yml"
+        fields:
+          - { label: "Subheading", name: "subheading", widget: "text" }
+          - name: "quotes"
+            label: "Press Quotes"
+            widget: "list"
+            fields:
+              - { label: "Publication Name", name: "publication", widget: "string" }
+              - { label: "Quote", name: "quote", widget: "text" }
+              - { label: "Link URL", name: "url", widget: "string" }
+              - { label: "Featured", name: "featured", widget: "boolean", default: false }
+
+      - name: "story"
+        label: "Our Story"
+        file: "_data/story.yml"
+        fields:
+          - { label: "Subheading", name: "subheading", widget: "text" }
+          - name: "timeline"
+            label: "Timeline Events"
+            widget: "list"
+            fields:
+              - { label: "Year", name: "year", widget: "string" }
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Body Text", name: "body", widget: "text" }
+              - { label: "Image Path", name: "image", widget: "image" }
+              - { label: "Alt Text", name: "alt", widget: "string" }
+              - { label: "Inverted Style", name: "inverted", widget: "boolean", default: false }
+
+  - name: "posts"
+    label: "Projects / Posts"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "default" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+      - { label: "Modal ID", name: "modal-id", widget: "number", value_type: "int" }
+      - { label: "Date", name: "date", widget: "date" }
+      - { label: "Image (filename)", name: "img", widget: "image" }
+      - { label: "Thumbnail (filename)", name: "thumbnail", widget: "image" }
+      - { label: "Alt Text", name: "alt", widget: "string" }
+      - { label: "Project Date", name: "project-date", widget: "string" }
+      - { label: "Client", name: "client", widget: "string", required: false }
+      - { label: "Category", name: "category", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown", required: false }

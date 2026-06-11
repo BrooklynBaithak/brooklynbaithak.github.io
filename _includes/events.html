@@ -6,12 +6,11 @@
                 <div class="bb-ornament">✦</div>
                 <h2 class="section-heading">Upcoming Events</h2>
                 <div class="bb-divider-gold"></div>
-                </h3>
             </div>
         </div>
-        {% if site.data.events.size > 0 %}
+        {% if site.data.events.events.size > 0 %}
         <div class="row bb-events-grid">
-            {% for event in site.data.events %}
+            {% for event in site.data.events.events %}
             <div class="col-md-4">
                 <div class="bb-event-card{% if event.featured %} bb-event-featured{% endif %}">
                     {% if event.featured %}
