@@ -1,6 +1,7 @@
 backend:
   name: git-gateway
   branch: main
+  site_domain: zesty-biscotti-94698d.netlify.app
 
 # This allows local development testing using `npx decap-server`
 local_backend: true
