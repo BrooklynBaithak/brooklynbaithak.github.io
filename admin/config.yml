@@ -3,6 +3,8 @@ backend:
   branch: main
   site_domain: zesty-biscotti-94698d.netlify.app
 
+logo_url: https://zesty-biscotti-94698d.netlify.app/img/logo_transparent.png
+
 # This allows local development testing using `npx decap-server`
 local_backend: true
 
@@ -164,7 +166,7 @@ collections:
               - { label: "Inverted Style", name: "inverted", widget: "boolean", default: false }
 
   - name: "posts"
-    label: "Projects / Posts"
+    label: "Posts"
     folder: "_posts"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"

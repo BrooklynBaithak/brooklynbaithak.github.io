@@ -1,93 +1,39 @@
-# Brooklyn Baithak Website Updater Guide
+# Brooklyn Baithak - Content Contributor Guide
 
-Welcome! This guide is designed for non-technical collaborators to easily update the content on the Brooklyn Baithak website directly through GitHub—**no coding, terminal commands, or software installations required.**
+Welcome! This guide will show you how to easily update the content on the Brooklyn Baithak website without needing any coding knowledge. We use a Content Management System (CMS) called **Decap CMS**.
 
----
+## 1. Accessing the Content Manager
+1. Go to the admin page: [https://zesty-biscotti-94698d.netlify.app/admin/](https://zesty-biscotti-94698d.netlify.app/admin/)
+2. You will see a login screen. Click on **Login with Netlify Identity**.
+   *(Note: If you haven't been invited yet, the site administrator will need to invite you via the [Netlify Identity Dashboard](https://app.netlify.com/projects/zesty-biscotti-94698d/configuration/identity). You will receive an email with an invite link to set your password).*
 
-## Table of Contents
-1. [Updating Website Content (Events, FAQs, FAQs, etc.)](#1-updating-website-content)
-2. [Step-by-Step: Editing on GitHub.com](#2-step-by-step-editing-on-githubcom)
-3. [Important Rules for Editing Data Files](#3-important-rules-for-editing-data-files)
-4. [Uploading New Images](#4-uploading-new-images)
+> ![Screenshot of Admin Login Page](docs/screenshots/login.png)
+> *Click on the log in with netlify button and it will redirect you to authenticating with your Github account. You will need to have access to the Brooklyn Baithak Github Organization*
 
----
+## 2. Navigating the Dashboard
+Once logged in, you will see the CMS Dashboard. On the left sidebar, you'll find different **Collections** (categories of content):
+- **Site Settings**: General website settings (Title, Description, Social Links) and Team Members.
+- **Data Files**: Content for specific sections of the website (Services, Events, FAQ, Impact Stats, Testimonials, Mission, Press, Our Story).
+- **Posts**: Individual projects or past events.
 
-## 1. Updating Website Content
+> ![Screenshot of CMS Dashboard](docs/screenshots/dashboard.png)
 
-Most of the website's content is stored in the `_data` folder in simple text files called **YAML** (`.yml`) files. You can edit these files to update the site.
+## 3. Editing Content
+1. Click on a collection on the left (e.g., **Data Files** -> **Events**).
+2. You will see a list of current items. Click on an item to edit it, or click **New Event** to create a new one.
+3. Fill in the required fields (Title, Date, Description, Image, etc.).
+4. For text fields, you can use the rich text editor to format your text (bold, italics, links).
 
-Here is a map of what each file in the `_data` folder controls:
+> ![Screenshot of Content Editor](docs/screenshots/editor.png)
 
-*   **[events.yml](file:///Users/drshikaasher/brooklynbaithak.github.io/_data/events.yml)**: The schedule of upcoming baithaks (title, date, description, Eventbrite links).
-*   **[faq.yml](file:///Users/drshikaasher/brooklynbaithak.github.io/_data/faq.yml)**: Frequently Asked Questions.
-*   **[testimonials.yml](file:///Users/drshikaasher/brooklynbaithak.github.io/_data/testimonials.yml)**: Quotes and reviews from attendees and performers.
-*   **[press.yml](file:///Users/drshikaasher/brooklynbaithak.github.io/_data/press.yml)**: Links and logos for press mentions.
-*   **[story.yml](file:///Users/drshikaasher/brooklynbaithak.github.io/_data/story.yml)**: Team biographies, organization history, and about page copy.
-*   **[impact.yml](file:///Users/drshikaasher/brooklynbaithak.github.io/_data/impact.yml)**: Statistics and metrics displayed on the home page.
+## 4. Saving and Publishing
+1. When you are done editing, look at the top bar.
+2. Click **Save** to save your changes.
+3. Depending on your workflow settings, you may see a **Publish** button. Click **Publish** -> **Publish Now** when you are ready for the changes to go live on the website.
+4. The website will automatically rebuild behind the scenes, and your changes will be live in a couple of minutes!
 
----
+> ![Screenshot of Publish Button](docs/screenshots/publish.png)
+> *(Please replace `docs/screenshots/publish.png` with an actual screenshot of the publish button)*
 
-## 2. Step-by-Step: Editing on GitHub.com
-
-To edit any file, follow these steps:
-
-1.  **Open the file:** Log into GitHub, navigate to this repository, and click into the `_data` folder. Click on the file you want to change (e.g., `events.yml`).
-2.  **Enter Edit Mode:** In the top right corner of the file view, click the **pencil icon** (Edit this file).
-3.  **Make your changes:** Modify the text. Be careful to follow the existing structure (see [Important Rules](#3-important-rules-for-editing-data-files) below).
-4.  **Save/Commit changes:**
-    *   Scroll down to the bottom of the page to the **Commit changes** box.
-    *   Write a short description of what you changed (e.g., `"Update July Baithak date"`).
-    *   Leave "Commit directly to the `main` branch" selected.
-    *   Click the green **Commit changes** button.
-5.  **Wait for the site to update:** The website will automatically rebuild and show your changes within 1–2 minutes!
-
----
-
-## 3. Important Rules for Editing Data Files
-
-YAML files are very strict about formatting. Please follow these rules to avoid breaking the site:
-
-### ⚠️ Indentation & Spaces
-*   **Use spaces, never tabs.**
-*   Keep the spacing exactly aligned with the existing items. If an item is indented by two spaces, your new item must also be indented by exactly two spaces.
-
-### 📝 Text formatting and Quotes
-*   If your text contains punctuation like colons (`:`), apostrophes (`'`), or quotes (`"`), wrap the entire line of text in double quotes.
-    *   *Correct:* `title: "Brooklyn Baithak: Summer Edition"`
-    *   *Incorrect:* `title: Brooklyn Baithak: Summer Edition` (The colon confuses the system)
-*   For multi-line descriptions, use a greater-than sign (`>`) on the first line, then indent the paragraph underneath it:
-    ```yaml
-    description: >
-      This is a long description that spans
-      multiple lines easily.
-    ```
-
-### 🗓️ Creating a New Item (e.g., a new event or FAQ)
-Copy an existing item block, paste it below, and modify the fields. Ensure each item starts with a dash (`- `) followed by a space.
-
-Example of an Event block:
-```yaml
-- title: "Brooklyn Baithak: Summer Edition"
-  month: JUL
-  day: 19
-  year: 2025
-  location: "Brooklyn, NY"
-  time: "6:00 PM – 9:00 PM"
-  description: >
-    An evening of classical music.
-  price: "$20 – $35"
-  url: "https://www.eventbrite.com/..."
-  featured: false
-```
-
----
-
-## 4. Uploading New Images
-
-If you need to upload new photos (e.g., performer headshots, press logos, event photos):
-
-1.  Navigate to the `img` folder on GitHub.
-2.  Click **Add file** -> **Upload files** in the top right.
-3.  Drag and drop your image files. Keep image filenames lowercase, short, and hyphenated (e.g., `sanjay-sharma.jpg`).
-4.  Scroll to the bottom, write a commit message (e.g., `"Add headshot for Sanjay"`), and click **Commit changes**.
-5.  To use this image in a data file, reference it by its path relative to the image folder (e.g., `/img/sanjay-sharma.jpg`).
+## Need Help?
+If you run into any issues logging in, please contact the site administrator to verify your Netlify Identity access.
