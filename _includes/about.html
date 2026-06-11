@@ -23,7 +23,7 @@
                                 <h4 class="subheading">{{ entry.heading }}</h4>
                             </div>
                             <div class="timeline-body">
-                                <p class="text-muted">{{ entry.body }}</p>
+                                <div class="text-muted">{{ entry.body | markdownify }}</div>
                             </div>
                         </div>
                     </li>

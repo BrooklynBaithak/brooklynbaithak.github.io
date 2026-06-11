@@ -19,7 +19,7 @@
                             <h4>{{ item.question }}</h4>
                         </div>
                         <div class="bb-faq-answer">
-                            <p>{{ item.answer }}</p>
+                            {{ item.answer | markdownify }}
                         </div>
                     </div>
                     {% endfor %}

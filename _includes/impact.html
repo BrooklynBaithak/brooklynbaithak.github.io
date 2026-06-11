@@ -26,7 +26,7 @@
                 <div class="col-md-4">
                     <div class="bb-testimonial">
                         <div class="bb-quote-mark">"</div>
-                        <p>"{{ testimonial.quote }}"</p>
+                        <div class="bb-testimonial-quote">{{ testimonial.quote | markdownify }}</div>
                         <div class="bb-testimonial-author">
                             <strong>— {{ testimonial.author }}</strong>, {{ testimonial.role }}
                         </div>

@@ -25,7 +25,7 @@
                         <h4 class="bb-event-title">{{ event.title }}</h4>
                         <p class="bb-event-meta"><i class="fa fa-map-marker"></i> {{ event.location }}</p>
                         <p class="bb-event-meta"><i class="fa fa-clock-o"></i> {{ event.time }}</p>
-                        <p class="bb-event-description">{{ event.description }}</p>
+                        <div class="bb-event-description">{{ event.description | markdownify }}</div>
                         <div class="bb-event-price">
                             <span class="bb-price-tag">{{ event.price }}</span>
                         </div>

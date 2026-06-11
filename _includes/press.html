@@ -15,7 +15,7 @@
                 <div class="bb-press-card{% if item.featured %} bb-press-card-featured{% endif %}">
                     <div class="bb-press-pub">{{ item.publication }}</div>
                     <blockquote class="bb-press-quote">
-                        "{{ item.quote }}"
+                        {{ item.quote | markdownify }}
                     </blockquote>
                     <a href="{{ item.url }}" class="bb-press-link">Read Article <i class="fa fa-external-link"></i></a>
                 </div>
