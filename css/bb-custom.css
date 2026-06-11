@@ -532,6 +532,13 @@ section h3.section-subheading {
   position: relative;
 }
 
+/* Fix iOS Safari background-attachment: fixed zoom issue */
+@supports (-webkit-touch-callout: none) {
+  .bb-impact {
+    background-attachment: scroll;
+  }
+}
+
 .bb-impact-overlay {
   background: linear-gradient(135deg, rgba(26,26,26,0.88) 0%, rgba(15,74,88,0.85) 100%);
   padding: 100px 0;
