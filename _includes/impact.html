@@ -1,0 +1,39 @@
+<!-- Impact Section -->
+<section id="impact" class="bb-impact">
+    <div class="bb-impact-overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="bb-ornament bb-ornament-light">✦</div>
+                    <h2 class="section-heading bb-light-heading">Our Impact</h2>
+                    <div class="bb-divider-light"></div>
+                    <h3 class="section-subheading bb-light-subheading">{{ site.data.impact.subheading }}</h3>
+                </div>
+            </div>
+            <div class="row bb-stats-row">
+                {% for stat in site.data.impact.stats %}
+                <div class="col-md-3 col-sm-6">
+                    <div class="bb-stat-card">
+                        <div class="bb-stat-number">{{ stat.number }}</div>
+                        <div class="bb-stat-label">{{ stat.label }}</div>
+                        <div class="bb-stat-icon"><i class="fa {{ stat.icon }}"></i></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="row bb-testimonials-row">
+                {% for testimonial in site.data.testimonials %}
+                <div class="col-md-4">
+                    <div class="bb-testimonial">
+                        <div class="bb-quote-mark">"</div>
+                        <p>"{{ testimonial.quote }}"</p>
+                        <div class="bb-testimonial-author">
+                            <strong>— {{ testimonial.author }}</strong>, {{ testimonial.role }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

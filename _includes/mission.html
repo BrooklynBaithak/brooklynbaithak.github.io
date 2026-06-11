@@ -1,0 +1,27 @@
+<!-- Mission Section -->
+<section id="mission" class="bb-mission">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 text-center">
+                <div class="bb-ornament">✦</div>
+                <h2 class="section-heading">Our Mission</h2>
+                <div class="bb-divider-gold"></div>
+                <p class="bb-mission-text">
+                    {{ site.data.mission.body }}
+                </p>
+                <p class="bb-mission-tagline">
+                    {{ site.data.mission.tagline }}
+                </p>
+            </div>
+        </div>
+        <div class="row bb-mission-pillars">
+            {% for pillar in site.data.mission.pillars %}
+            <div class="col-md-4 text-center">
+                <div class="bb-pillar-icon">{{ pillar.icon }}</div>
+                <h4 class="bb-pillar-title">{{ pillar.title }}</h4>
+                <p class="text-muted">{{ pillar.text }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

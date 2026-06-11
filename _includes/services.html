@@ -1,0 +1,39 @@
+<!-- What We Offer Section -->
+<section id="services" class="bb-services">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="bb-ornament">✦</div>
+                <h2 class="section-heading">What We Offer</h2>
+                <div class="bb-divider-gold"></div>
+                <h3 class="section-subheading text-muted">{{ site.data.services.subheading }}</h3>
+            </div>
+        </div>
+        <div class="row bb-services-tabs">
+            {% for group in site.data.services.groups %}
+            <div class="col-md-4">
+                <div class="bb-service-card{% if group.featured %} bb-service-card-featured{% endif %}">
+                    <div class="bb-service-icon">
+                        <span class="fa-stack fa-4x">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fa {{ group.icon }} fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <h3 class="service-heading">{{ group.heading }}</h3>
+                    <div class="bb-service-list">
+                        {% for item in group.items %}
+                        <div class="bb-service-item">
+                            <i class="fa fa-check-circle"></i>
+                            <span>{{ item }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% if group.cta_text %}
+                    <a href="{{ group.cta_url }}" class="btn btn-xl btn-sm-services">{{ group.cta_text }}</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

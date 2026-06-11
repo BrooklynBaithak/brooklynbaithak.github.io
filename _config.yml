@@ -1,0 +1,73 @@
+url: https://brooklynbaithak.github.io
+baseurl: ""
+
+# Site settings
+title: Brooklyn Baithak
+email: brooklynbaithak@gmail.com
+description: "Brooklyn Baithak is an intimate performance space empowering emerging artists through music, connection, and cultural expression. Reimagining Tradition, Redefining Connection."
+
+# Social links
+social:
+- title: instagram
+  url: https://www.instagram.com/brooklynbaithak/
+# - title: facebook
+#   url: https://www.facebook.com/brooklynbaithak/
+- title: youtube
+  url: https://www.youtube.com/@brooklynbaithak
+
+# Team members
+people:
+- name: Sapan Modi
+  pic: sapan
+  position: Founder & Artistic Director
+  bio: Over the past decade, I’ve been leading music and community projects ranging from open mics and festivals to Gujarati speaking groups and even touring with a South Asian punk rock band. Those experiences taught me the power of performance, culture, and community-building, and ultimately inspired Brooklyn Baithak.
+  social:
+    - title: instagram
+      url: https://www.instagram.com/brooklynbaithak/
+    - title: linkedin
+      url: "#"
+- name: Sushant
+  pic: sushant
+  position: Photographer
+  bio: Sushant captures Brooklyn Baithak through photography, video, and lighting, shaping the visual identity of each gathering. His work preserves the emotion, energy, and intimacy of every event, bringing our community to life across platforms.
+  social:
+    - title: instagram
+      url: https://www.instagram.com/brooklynbaithak/
+    - title: linkedin
+      url: "#"
+- name: Shiva
+  pic: shiva
+  position: Sound Engineer
+  bio: Shiva manages all aspects of live audio, from setup to mixing, ensuring clear, balanced, and high-quality sound throughout every performance. He works closely with artists to meet their technical needs and support a seamless stage experience.
+  social:
+    - title: instagram
+      url: https://www.instagram.com/brooklynbaithak/
+    - title: linkedin
+      url: "#"
+- name: Anwesha
+  pic: anwesha
+  position: Operations
+  bio: Anwesha oversees event logistics and coordination, including artist curation, venue partnerships, ticketing, and behind-the-scenes administration. She helps ensure every event is thoughtfully organized and runs smoothly from start to finish.
+  social:
+    - title: instagram
+      url: https://www.instagram.com/brooklynbaithak/
+    - title: linkedin
+      url: "#"
+- name: Sakshi
+  pic: sakshi
+  position: Event Day Lead
+  bio: Sakshi leads guest experience on event days, welcoming attendees, guiding flow throughout the space, and supporting artists as needed. She also coordinates volunteers and helps shape the warm, inviting atmosphere of each Baithak.  
+  social:
+    - title: instagram
+      url: https://www.instagram.com/brooklynbaithak/
+    - title: linkedin
+      url: "#"
+- name: Drshika
+  pic: Drshika
+  position: Website Developer
+  bio: Drshika has designed and developed this website. She supports the Baithak team in keeping it updated. 
+  social:
+    - title: instagram
+      url: https://www.instagram.com/brooklynbaithak/
+    - title: linkedin
+      url: "#"

@@ -1,0 +1,31 @@
+subheading: >
+  Brooklyn Baithak has been recognized for its unique contribution to New York's cultural landscape.
+
+quotes:
+  - publication: Central Desi
+    quote: >
+      While Modi’s space embraces all forms of raga music – from Bollywood to Carnatic to folk – he says qawwali has been a constant on their stage, and a crowd-pleaser. 
+    url: "https://centraldesi.beehiiv.com/p/from-dargahs-to-coffee-shops-how-qawwali-lives-on-in-the-diaspora"
+    featured: true
+  
+  - publication: Pulse Connects
+    quote: >
+      For many appreciators of South Asian music, there seems to be a line for the tasteful modernization of classical art – the Baithak team so far seems to create a space for contemporary work that is still sincere to its roots and Hindustani and Carnatic frameworks.
+    url: "https://www.pulseconnects.com/story/brooklyn-baithak-community-culture-in-the-heart-of-nyc"
+    featured: true
+
+  - publication: Pulse Connects
+    quote: >
+      The showcase at Jalopy Theatre highlighted Brooklyn Baithak’s key guiding principles of artist collaboration, experimentation, and in-depth exploration of raga-based music.
+    url: "https://www.pulseconnects.com/story/brooklyn-baithak-at-jalopy-theatre"
+    featured: true
+
+# media:
+#   - icon: fa-microphone
+#     name: WNYC
+#   - icon: fa-video-camera
+#     name: NYC Media
+#   - icon: fa-newspaper-o
+#     name: The Villager
+#   - icon: fa-globe
+#     name: South Asian News

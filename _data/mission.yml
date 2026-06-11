@@ -1,0 +1,21 @@
+body: >
+  Brooklyn Baithak is a Brooklyn-based intimate concert series dedicated to
+  empowering emerging South Asian and diaspora artists. We create a living room–style
+  space where musicians can perform, connect with audiences, and build lasting community
+  — all while celebrating the rich traditions and evolving expressions of South Asian
+  music and culture.
+
+tagline: >
+  We believe that <em>music is a bridge</em> — between generations, between cultures,
+  between strangers who become community.
+
+pillars:
+  - icon: "🎵"
+    title: Empower Artists
+    text: Providing emerging musicians with a professional performance platform, mentorship, and direct audience access.
+  - icon: "🏡"
+    title: Build Community
+    text: Creating intimate, living room–style experiences that foster genuine connection between artists and audiences.
+  - icon: "🌐"
+    title: Celebrate Culture
+    text: Honoring South Asian artistic traditions while making space for contemporary diaspora voices and evolving expressions.

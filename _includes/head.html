@@ -1,0 +1,52 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }} | Empowering Emerging Artists{% endif %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="author" content="Brooklyn Baithak">
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+
+    <!-- Open Graph -->
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ "/img/favicon_io/apple-touch-icon.png" | prepend: site.baseurl }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ "/img/favicon_io/favicon-32x32.png" | prepend: site.baseurl }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ "/img/favicon_io/favicon-16x16.png" | prepend: site.baseurl }}">
+    <link rel="shortcut icon" href="{{ "/img/favicon_io/favicon.ico" | prepend: site.baseurl }}">
+    <link rel="manifest" href="{{ "/img/favicon_io/site.webmanifest" | prepend: site.baseurl }}">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Brooklyn Baithak | Empowering Emerging Artists">
+    <meta property="og:description" content="{{ site.description }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://brooklynbaithak.github.io/">
+    <meta property="og:image" content="https://brooklynbaithak.github.io/img/header-bg.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Brooklyn Baithak">
+    <meta name="twitter:description" content="Reimagining Tradition, Redefining Connection">
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#c8a951">
+
+    <!-- Bootstrap Core CSS (from theme) -->
+    <link rel="stylesheet" href="{{ "/style.css" | prepend: site.baseurl }}">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Lato:wght@300;400;700&family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Droid+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- Brooklyn Baithak Custom CSS -->
+    <link rel="stylesheet" href="{{ "/css/bb-custom.css" | prepend: site.baseurl }}">
+
+    <!-- HTML5 Shim and Respond.js IE8 support -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>

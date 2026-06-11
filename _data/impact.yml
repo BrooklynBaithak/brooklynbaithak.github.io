@@ -1,0 +1,23 @@
+subheading: >
+  Every baithak ripples outward — into artists' careers, audiences' hearts,
+  and Brooklyn's cultural fabric.
+
+stats:
+  - number: "25+"
+    label: Events Hosted
+    icon: fa-star
+  - number: "70%"
+    label: New Audience
+    icon: fa-users
+  - number: "100+"
+    label: Emerging Artists
+    icon: fa-music
+  - number: "75%"
+    label: Performers Found Gigs
+    icon: fa-handshake-o
+  - number: "1000+"
+    label: Unique Attendees
+    icon: fa-users
+  - number: "4,000+"
+    label: Instagram Community
+    icon: fa-instagram
