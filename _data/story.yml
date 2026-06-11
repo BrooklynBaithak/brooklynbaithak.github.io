@@ -5,7 +5,7 @@ timeline:
     heading: A Living Room, A Dream
     body: >
       Brooklyn Baithak began in November 2023 as an intimate living room gathering for raga-based musicians, dancers, and emerging artists. 
-    image: img/about/1.png
+    image: /img/1.png
     alt: Brooklyn Baithak in Sapan's living room
     inverted: false
 
@@ -15,7 +15,7 @@ timeline:
       We added an open jam at the end so artists can collaborate. The energy was incredible, and the bar had already been set high! Our mission of 
       “Empowering Emerging Artists” had now become clear. We also started hosting baithak at venues like 
       Bazarakh Cafe and Jalopy theatre for our first showcase!
-    image: img/about/2.jpg
+    image: /img/2.jpg
     alt: Brooklyn Baithak Mixer
     inverted: true
 
@@ -26,7 +26,7 @@ timeline:
       only showcase for a supportive atmosphere for new performers, and ghar.ana sessions for a deep dive into artist's 
       repertoire and stories. We also partnered with new venues and organizations like 
       Tera Mera, Fontainhas and Chhandayan. 
-    image: img/about/3.jpg
+    image: /img/3.jpg
     alt: Brooklyn Baithak Mixer in Fontainhas
     inverted: false
 
@@ -35,6 +35,6 @@ timeline:
     body: >
       We partnered with new venues like HappyMonday studio and vendors like HotChaiLady. We launched our website and are excited to create and strengthen more relationships with our community partners. 
       Our mission of “Empowering Emerging Artists” has now taken on a life of its own as we continue to provide a platform for artists to showcase their talent and connect with audiences in New York City.
-    image: img/about/4.png
+    image: /img/4.png
     alt: Sapan speaks to the audience
     inverted: true

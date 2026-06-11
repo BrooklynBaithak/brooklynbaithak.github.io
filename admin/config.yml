@@ -46,8 +46,6 @@ collections:
   - name: "data"
     label: "Data Files"
     delete: false
-    editor:
-      preview: false
     files:
       - name: "services"
         label: "Services"

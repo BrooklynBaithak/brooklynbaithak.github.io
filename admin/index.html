@@ -10,5 +10,405 @@
 <body>
   <!-- Include the script that builds the page and starts Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    // Register Stylesheets
+    CMS.registerPreviewStyle("/style.css");
+    CMS.registerPreviewStyle("/css/bb-custom.css");
+    CMS.registerPreviewStyle("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+    CMS.registerPreviewStyle("https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Lato:wght@300;400;700&family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Droid+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+    // Define Post Preview Component
+    var PostPreview = createClass({
+      render: function() {
+        var entry = this.props.entry;
+        var getAsset = this.props.getAsset;
+        
+        var title = entry.getIn(['data', 'title']) || '';
+        var subtitle = entry.getIn(['data', 'subtitle']) || '';
+        var description = entry.getIn(['data', 'description']) || '';
+        var client = entry.getIn(['data', 'client']) || '';
+        var projectDate = entry.getIn(['data', 'project-date']) || '';
+        var category = entry.getIn(['data', 'category']) || '';
+        var body = this.props.widgetFor('body');
+        
+        // Handle images
+        var img = entry.getIn(['data', 'img']);
+        var imgUrl = '';
+        if (img) {
+          var asset = getAsset(img);
+          if (asset) {
+            imgUrl = String(asset);
+            // Prepend directory if it is just a filename
+            if (typeof imgUrl === 'string' && !imgUrl.startsWith('/') && !imgUrl.startsWith('http') && !imgUrl.startsWith('blob:')) {
+              imgUrl = '/img/portfolio/' + imgUrl;
+            }
+          }
+        }
+
+        return h('div', { className: 'portfolio-modal' },
+          h('div', { className: 'modal-content' },
+            h('div', { className: 'container' },
+              h('div', { className: 'row' },
+                h('div', { className: 'col-lg-8 col-lg-offset-2' },
+                  h('div', { className: 'modal-body' },
+                    h('h2', {}, title),
+                    h('hr', { className: 'star-primary' }),
+                    imgUrl ? h('img', { src: imgUrl, className: 'img-responsive img-centered', alt: entry.getIn(['data', 'alt']) || '' }) : null,
+                    h('p', {}, description),
+                    body ? h('div', {}, body) : null,
+                    h('ul', { className: 'list-inline item-details' },
+                      client ? h('li', {}, 'Client: ', h('strong', {}, client)) : null,
+                      projectDate ? h('li', {}, 'Date: ', h('strong', {}, projectDate)) : null,
+                      category ? h('li', {}, 'Service: ', h('strong', {}, category)) : null
+                    )
+                  )
+                )
+              )
+            )
+          )
+        );
+      }
+    });
+
+    // Register the custom preview template
+    CMS.registerPreviewTemplate("posts", PostPreview);
+
+    // Define Data Files Preview Component
+    var DataPreview = createClass({
+      render: function() {
+        var entry = this.props.entry;
+        var getAsset = this.props.getAsset;
+        var slug = entry.get('slug'); // Identifies the file within the collection (e.g. 'faq')
+        
+        if (slug === 'faq') {
+          var faqList = entry.getIn(['data', 'faq']);
+          var items = [];
+          if (faqList) {
+            faqList.forEach(function(item, index) {
+              items.push(
+                h('div', { className: 'bb-faq-item', key: index },
+                  h('div', { className: 'bb-faq-question' },
+                    h('i', { className: 'fa fa-question-circle bb-faq-icon' }),
+                    h('h4', {}, item.get('question'))
+                  ),
+                  h('div', { className: 'bb-faq-answer' },
+                    h('p', {}, item.get('answer'))
+                  )
+                )
+              );
+            });
+          }
+          return h('section', { id: 'faq', className: 'bb-faq' },
+            h('div', { className: 'container' },
+              h('div', { className: 'row' },
+                h('div', { className: 'col-lg-12 text-center' },
+                  h('div', { className: 'bb-ornament' }, '✦'),
+                  h('h2', { className: 'section-heading' }, 'Frequently Asked Questions'),
+                  h('div', { className: 'bb-divider-gold' }),
+                  h('h3', { className: 'section-subheading text-muted' }, 'Everything you need to know about Brooklyn Baithak.')
+                )
+              ),
+              h('div', { className: 'row' },
+                h('div', { className: 'col-lg-10 col-lg-offset-1' },
+                  h('div', { className: 'bb-faq-grid' }, items)
+                )
+              )
+            )
+          );
+        } else if (slug === 'services') {
+          var groups = entry.getIn(['data', 'groups']);
+          var groupElements = [];
+          if (groups) {
+            groups.forEach(function(group, index) {
+              var itemsList = group.get('items');
+              var itemElements = [];
+              if (itemsList) {
+                itemsList.forEach(function(item, i) {
+                  itemElements.push(
+                    h('div', { className: 'bb-service-item', key: i },
+                      h('i', { className: 'fa fa-check-circle' }),
+                      h('span', {}, item)
+                    )
+                  );
+                });
+              }
+              var cta = null;
+              if (group.get('cta_text')) {
+                cta = h('a', { className: 'btn btn-xl btn-sm-services', href: group.get('cta_url') || '#' }, group.get('cta_text'));
+              }
+              var featuredClass = group.get('featured') ? ' bb-service-card-featured' : '';
+              groupElements.push(
+                h('div', { className: 'col-md-4', key: index },
+                  h('div', { className: 'bb-service-card' + featuredClass },
+                    h('div', { className: 'bb-service-icon' },
+                      h('span', { className: 'fa-stack fa-4x' },
+                        h('i', { className: 'fa fa-circle fa-stack-2x text-primary' }),
+                        h('i', { className: 'fa ' + (group.get('icon') || '') + ' fa-stack-1x fa-inverse' })
+                      )
+                    ),
+                    h('h3', { className: 'service-heading' }, group.get('heading')),
+                    h('div', { className: 'bb-service-list' }, itemElements),
+                    cta
+                  )
+                )
+              );
+            });
+          }
+          return h('section', { id: 'services', className: 'bb-services' },
+            h('div', { className: 'container' },
+              h('div', { className: 'row' },
+                h('div', { className: 'col-lg-12 text-center' },
+                  h('div', { className: 'bb-ornament' }, '✦'),
+                  h('h2', { className: 'section-heading' }, 'What We Offer'),
+                  h('div', { className: 'bb-divider-gold' }),
+                  h('h3', { className: 'section-subheading text-muted' }, entry.getIn(['data', 'subheading']))
+                )
+              ),
+              h('div', { className: 'row bb-services-tabs' }, groupElements)
+            )
+          );
+        } else if (slug === 'events') {
+          var events = entry.getIn(['data', 'events']);
+          var eventElements = [];
+          if (events) {
+            events.forEach(function(event, index) {
+              var featuredBadge = event.get('featured') ? h('div', { className: 'bb-featured-badge' }, 'Featured') : null;
+              var featuredClass = event.get('featured') ? ' bb-event-featured' : '';
+              
+              eventElements.push(
+                h('div', { className: 'col-md-4', key: index },
+                  h('div', { className: 'bb-event-card' + featuredClass },
+                    featuredBadge,
+                    h('div', { className: 'bb-event-date-badge' },
+                      h('span', { className: 'bb-event-month' }, event.get('month')),
+                      h('span', { className: 'bb-event-day' }, event.get('day')),
+                      h('span', { className: 'bb-event-year' }, event.get('year'))
+                    ),
+                    h('div', { className: 'bb-event-details' },
+                      h('h4', { className: 'bb-event-title' }, event.get('title')),
+                      h('p', { className: 'bb-event-meta' }, h('i', { className: 'fa fa-map-marker' }), ' ', event.get('location')),
+                      h('p', { className: 'bb-event-meta' }, h('i', { className: 'fa fa-clock-o' }), ' ', event.get('time')),
+                      h('p', { className: 'bb-event-description' }, event.get('description')),
+                      h('div', { className: 'bb-event-price' },
+                        h('span', { className: 'bb-price-tag' }, event.get('price'))
+                      ),
+                      h('a', { className: 'btn btn-xl bb-btn-event', href: event.get('url') || '#', target: '_blank' }, 'Get Tickets')
+                    )
+                  )
+                )
+              );
+            });
+          }
+          return h('section', { id: 'events', className: 'bb-events bg-light-gray' },
+            h('div', { className: 'container' },
+              h('div', { className: 'row' },
+                h('div', { className: 'col-lg-12 text-center' },
+                  h('div', { className: 'bb-ornament' }, '✦'),
+                  h('h2', { className: 'section-heading' }, 'Upcoming Events'),
+                  h('div', { className: 'bb-divider-gold' })
+                )
+              ),
+              h('div', { className: 'row bb-events-grid' }, eventElements)
+            )
+          );
+        } else if (slug === 'impact') {
+          var stats = entry.getIn(['data', 'stats']);
+          var statElements = [];
+          if (stats) {
+            stats.forEach(function(stat, index) {
+              statElements.push(
+                h('div', { className: 'col-md-3 col-sm-6', key: index },
+                  h('div', { className: 'bb-stat-card' },
+                    h('div', { className: 'bb-stat-number' }, stat.get('number')),
+                    h('div', { className: 'bb-stat-label' }, stat.get('label')),
+                    h('div', { className: 'bb-stat-icon' }, h('i', { className: 'fa ' + (stat.get('icon') || '') }))
+                  )
+                )
+              );
+            });
+          }
+          return h('section', { id: 'impact', className: 'bb-impact' },
+            h('div', { className: 'bb-impact-overlay' },
+              h('div', { className: 'container' },
+                h('div', { className: 'row' },
+                  h('div', { className: 'col-lg-12 text-center' },
+                    h('div', { className: 'bb-ornament bb-ornament-light' }, '✦'),
+                    h('h2', { className: 'section-heading bb-light-heading' }, 'Our Impact'),
+                    h('div', { className: 'bb-divider-light' }),
+                    h('h3', { className: 'section-subheading bb-light-subheading' }, entry.getIn(['data', 'subheading']))
+                  )
+                ),
+                h('div', { className: 'row bb-stats-row' }, statElements)
+              )
+            )
+          );
+        } else if (slug === 'testimonials') {
+          var testimonials = entry.getIn(['data', 'testimonials']);
+          var testElements = [];
+          if (testimonials) {
+            testimonials.forEach(function(test, index) {
+              testElements.push(
+                h('div', { className: 'col-md-4', key: index },
+                  h('div', { className: 'bb-testimonial' },
+                    h('div', { className: 'bb-quote-mark' }, '"'),
+                    h('p', {}, '"' + (test.get('quote') || '') + '"'),
+                    h('div', { className: 'bb-testimonial-author' },
+                      h('strong', {}, '— ' + (test.get('author') || '')), ', ' + (test.get('role') || '')
+                    )
+                  )
+                )
+              );
+            });
+          }
+          return h('section', { className: 'bb-impact', style: { padding: '50px 0' } },
+            h('div', { className: 'bb-impact-overlay' },
+              h('div', { className: 'container' },
+                h('div', { className: 'row bb-testimonials-row' }, testElements)
+              )
+            )
+          );
+        } else if (slug === 'mission') {
+          var pillars = entry.getIn(['data', 'pillars']);
+          var pillarElements = [];
+          if (pillars) {
+            pillars.forEach(function(pillar, index) {
+              pillarElements.push(
+                h('div', { className: 'col-md-4 text-center', key: index },
+                  h('div', { className: 'bb-pillar-icon' }, pillar.get('icon')),
+                  h('h4', { className: 'bb-pillar-title' }, pillar.get('title')),
+                  h('p', { className: 'text-muted' }, pillar.get('text'))
+                )
+              );
+            });
+          }
+          return h('section', { id: 'mission', className: 'bb-mission' },
+            h('div', { className: 'container' },
+              h('div', { className: 'row' },
+                h('div', { className: 'col-lg-10 col-lg-offset-1 text-center' },
+                  h('div', { className: 'bb-ornament' }, '✦'),
+                  h('h2', { className: 'section-heading' }, 'Our Mission'),
+                  h('div', { className: 'bb-divider-gold' }),
+                  h('p', { className: 'bb-mission-text' }, entry.getIn(['data', 'body'])),
+                  h('p', { className: 'bb-mission-tagline' }, entry.getIn(['data', 'tagline']))
+                )
+              ),
+              h('div', { className: 'row bb-mission-pillars' }, pillarElements)
+            )
+          );
+        } else if (slug === 'press') {
+          var quotes = entry.getIn(['data', 'quotes']);
+          var quoteElements = [];
+          if (quotes) {
+            quotes.forEach(function(item, index) {
+              var featuredClass = item.get('featured') ? ' bb-press-card-featured' : '';
+              quoteElements.push(
+                h('div', { className: 'col-sm-4 text-center', key: index },
+                  h('div', { className: 'bb-press-card' + featuredClass },
+                    h('div', { className: 'bb-press-pub' }, item.get('publication')),
+                    h('blockquote', { className: 'bb-press-quote' }, '"' + (item.get('quote') || '') + '"'),
+                    h('a', { className: 'bb-press-link', href: item.get('url') || '#' }, 'Read Article ', h('i', { className: 'fa fa-external-link' }))
+                  )
+                )
+              );
+            });
+          }
+          return h('section', { id: 'press', className: 'bb-press bg-light-gray' },
+            h('div', { className: 'container' },
+              h('div', { className: 'row' },
+                h('div', { className: 'col-lg-12 text-center' },
+                  h('div', { className: 'bb-ornament' }, '✦'),
+                  h('h2', { className: 'section-heading' }, 'In the Press'),
+                  h('div', { className: 'bb-divider-gold' }),
+                  h('h3', { className: 'section-subheading text-muted' }, entry.getIn(['data', 'subheading']))
+                )
+              ),
+              h('div', { className: 'row bb-press-logos' }, quoteElements)
+            )
+          );
+        } else if (slug === 'story') {
+          var timeline = entry.getIn(['data', 'timeline']);
+          var timelineElements = [];
+          if (timeline) {
+            timeline.forEach(function(item, index) {
+              var invertedClass = item.get('inverted') ? 'timeline-inverted' : '';
+              var imgStr = item.get('image');
+              var imgUrl = '';
+              if (imgStr) {
+                // Use the getAsset function provided in props
+                var asset = getAsset ? getAsset(imgStr) : imgStr; 
+                if (asset) {
+                  imgUrl = String(asset);
+                  if (typeof imgUrl === 'string' && !imgUrl.startsWith('/') && !imgUrl.startsWith('http') && !imgUrl.startsWith('blob:')) {
+                    if (imgUrl.startsWith('img/')) {
+                      imgUrl = '/' + imgUrl;
+                    } else {
+                      imgUrl = '/img/' + imgUrl; 
+                    }
+                  }
+                }
+              }
+              timelineElements.push(
+                h('li', { className: invertedClass, key: index },
+                  h('div', { className: 'timeline-image' },
+                    imgUrl ? h('img', { className: 'img-circle img-responsive', src: imgUrl, alt: item.get('alt') || '' }) : null
+                  ),
+                  h('div', { className: 'timeline-panel' },
+                    h('div', { className: 'timeline-heading' },
+                      h('h4', {}, item.get('year')),
+                      h('h4', { className: 'subheading' }, item.get('heading'))
+                    ),
+                    h('div', { className: 'timeline-body' },
+                      h('p', { className: 'text-muted' }, item.get('body'))
+                    )
+                  )
+                )
+              );
+            });
+            // Add the final capstone node
+            timelineElements.push(
+              h('li', { className: 'timeline-inverted', key: 'capstone' },
+                h('div', { className: 'timeline-image' },
+                  h('h4', {}, 'Be Part', h('br'), 'Of Our', h('br'), 'Story!')
+                )
+              )
+            );
+          }
+          return h('section', { id: 'story', className: 'bb-story' },
+            h('div', { className: 'container' },
+              h('div', { className: 'row' },
+                h('div', { className: 'col-lg-12 text-center' },
+                  h('div', { className: 'bb-ornament' }, '✦'),
+                  h('h2', { className: 'section-heading' }, 'Our Story'),
+                  h('div', { className: 'bb-divider-gold' }),
+                  h('h3', { className: 'section-subheading text-muted' }, entry.getIn(['data', 'subheading']))
+                )
+              ),
+              h('div', { className: 'row' },
+                h('div', { className: 'col-lg-12' },
+                  h('ul', { className: 'timeline' }, timelineElements)
+                )
+              )
+            )
+          );
+        }
+        
+        // Fallback for other data files that don't have a specific preview
+        return h('div', { style: { padding: '2rem' } }, 
+          h('h2', {}, 'No custom preview configured for ' + slug + '.'),
+          h('p', {}, 'However, your data will still be saved successfully.')
+        );
+      }
+    });
+
+    CMS.registerPreviewTemplate("services", DataPreview);
+    CMS.registerPreviewTemplate("events", DataPreview);
+    CMS.registerPreviewTemplate("impact", DataPreview);
+    CMS.registerPreviewTemplate("testimonials", DataPreview);
+    CMS.registerPreviewTemplate("mission", DataPreview);
+    CMS.registerPreviewTemplate("press", DataPreview);
+    CMS.registerPreviewTemplate("story", DataPreview);
+    CMS.registerPreviewTemplate("faq", DataPreview);
+    CMS.registerPreviewTemplate("data", DataPreview);
+  </script>
 </body>
 </html>
