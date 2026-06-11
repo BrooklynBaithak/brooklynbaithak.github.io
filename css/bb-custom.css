@@ -366,25 +366,37 @@ section h3.section-subheading {
   text-transform: uppercase;
 }
 
-.bb-service-list {
+.bb-service-body {
   text-align: left;
   margin-top: 15px;
-}
-
-.bb-service-item {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 12px;
   color: rgba(255,255,255,0.8);
   font-size: 13px;
   line-height: 1.5;
 }
 
-.bb-service-item i.fa-check-circle {
+.bb-service-body p {
+  margin-bottom: 12px;
+}
+
+.bb-service-body ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 15px;
+}
+
+.bb-service-body li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 12px;
+}
+
+.bb-service-body li::before {
+  content: '\f058'; /* fa-check-circle */
+  font-family: 'FontAwesome';
+  position: absolute;
+  left: 0;
+  top: 2px;
   color: var(--bb-gold);
-  margin-right: 10px;
-  margin-top: 2px;
-  flex-shrink: 0;
   font-size: 14px;
 }
 

@@ -20,13 +20,8 @@
                         </span>
                     </div>
                     <h3 class="service-heading">{{ group.heading }}</h3>
-                    <div class="bb-service-list">
-                        {% for item in group.items %}
-                        <div class="bb-service-item">
-                            <i class="fa fa-check-circle"></i>
-                            <span>{{ item }}</span>
-                        </div>
-                        {% endfor %}
+                    <div class="bb-service-body">
+                        {{ group.body | markdownify }}
                     </div>
                     {% if group.cta_text %}
                     <a href="{{ group.cta_url }}" class="btn btn-xl btn-sm-services">{{ group.cta_text }}</a>
