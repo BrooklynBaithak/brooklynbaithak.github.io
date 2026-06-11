@@ -9,15 +9,15 @@
                 <h3 class="section-subheading text-muted">{{ site.data.press.subheading }}</h3>
             </div>
         </div>
-        <div class="row bb-press-logos">
+        <div class="row bb-press-logos" data-cms-list="quotes" data-cms-file="_data/press.yml">
             {% for item in site.data.press.quotes %}
-            <div class="col-sm-4 text-center">
+            <div class="col-sm-4 text-center" data-cms-item="{{ forloop.index0 }}">
                 <div class="bb-press-card{% if item.featured %} bb-press-card-featured{% endif %}">
-                    <div class="bb-press-pub">{{ item.publication }}</div>
-                    <blockquote class="bb-press-quote">
+                    <div class="bb-press-pub" data-cms-file="_data/press.yml" data-cms-key="quotes[{{ forloop.index0 }}].publication">{{ item.publication }}</div>
+                    <blockquote class="bb-press-quote" data-cms-file="_data/press.yml" data-cms-key="quotes[{{ forloop.index0 }}].quote">
                         "{{ item.quote }}"
                     </blockquote>
-                    <a href="{{ item.url }}" class="bb-press-link">Read Article <i class="fa fa-external-link"></i></a>
+                    <a href="{{ item.url }}" class="bb-press-link" data-cms-file="_data/press.yml" data-cms-key="quotes[{{ forloop.index0 }}].url">Read Article <i class="fa fa-external-link"></i></a>
                 </div>
             </div>
             {% endfor %}

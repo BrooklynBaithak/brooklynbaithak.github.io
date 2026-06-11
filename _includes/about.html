@@ -6,24 +6,24 @@
                 <div class="bb-ornament">✦</div>
                 <h2 class="section-heading">Our Story</h2>
                 <div class="bb-divider-gold"></div>
-                <h3 class="section-subheading text-muted">{{ site.data.story.subheading }}</h3>
+                <h3 class="section-subheading text-muted" data-cms-file="_data/story.yml" data-cms-key="story.subheading">{{ site.data.story.subheading }}</h3>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <ul class="timeline">
+                <ul class="timeline" data-cms-list="timeline" data-cms-file="_data/story.yml">
                     {% for entry in site.data.story.timeline %}
-                    <li{% if entry.inverted %} class="timeline-inverted"{% endif %}>
+                    <li{% if entry.inverted %} class="timeline-inverted"{% endif %} data-cms-item="{{ forloop.index0 }}">
                         <div class="timeline-image">
-                            <img class="img-circle img-responsive" src="{{ entry.image }}" alt="{{ entry.alt }}">
+                            <img class="img-circle img-responsive" src="{{ entry.image }}" alt="{{ entry.alt }}" data-cms-file="_data/story.yml" data-cms-key="story.timeline[{{ forloop.index0 }}].image">
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
-                                <h4>{{ entry.year }}</h4>
-                                <h4 class="subheading">{{ entry.heading }}</h4>
+                                <h4 data-cms-file="_data/story.yml" data-cms-key="story.timeline[{{ forloop.index0 }}].year">{{ entry.year }}</h4>
+                                <h4 class="subheading" data-cms-file="_data/story.yml" data-cms-key="story.timeline[{{ forloop.index0 }}].heading">{{ entry.heading }}</h4>
                             </div>
                             <div class="timeline-body">
-                                <p class="text-muted">{{ entry.body }}</p>
+                                <p class="text-muted" data-cms-file="_data/story.yml" data-cms-key="story.timeline[{{ forloop.index0 }}].body">{{ entry.body }}</p>
                             </div>
                         </div>
                     </li>

@@ -19,3 +19,16 @@
     <!-- Inline Editor Script -->
     <script src="{{ "/js/inline-editor.js" | prepend: site.baseurl }}"></script>
 
+    <!-- Initial Data for Inline Editor -->
+    {% if request.path == nil or page.url == "/" or page.url == "/index.html" %}
+    <script id="bb-cms-initial-data" type="application/json">
+    {
+      "faq": {{ site.data.faq | jsonify }},
+      "events": {{ site.data.events | jsonify }},
+      "quotes": {{ site.data.press.quotes | jsonify }},
+      "timeline": {{ site.data.story.timeline | jsonify }},
+      "people": {{ site.people | jsonify }}
+    }
+    </script>
+    {% endif %}
+

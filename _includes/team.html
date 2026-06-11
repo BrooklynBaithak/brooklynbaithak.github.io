@@ -11,17 +11,17 @@
         </div>
         
         <!-- FIX: Added bb-team-row class here to handle card centering -->
-        <div class="row bb-team-row">
+        <div class="row bb-team-row" data-cms-list="people" data-cms-file="_config.yml">
             {% for member in site.people %}
-            <div class="col-sm-4">
+            <div class="col-sm-4" data-cms-item="{{ forloop.index0 }}">
                 <div class="team-member">
                     <div class="bb-team-img-wrap">
-                        <img src="img/team/{{ member.pic }}.jpg" class="img-responsive img-circle bb-team-img" alt="{{ member.name }}">
+                        <img src="img/team/{{ member.pic }}.jpg" class="img-responsive img-circle bb-team-img" alt="{{ member.name }}" data-cms-file="_config.yml" data-cms-key="people[{{ forloop.index0 }}].pic">
                     </div>
-                    <h4>{{ member.name }}</h4>
-                    <p class="text-muted">{{ member.position }}</p>
+                    <h4 data-cms-file="_config.yml" data-cms-key="people[{{ forloop.index0 }}].name">{{ member.name }}</h4>
+                    <p class="text-muted" data-cms-file="_config.yml" data-cms-key="people[{{ forloop.index0 }}].position">{{ member.position }}</p>
                     {% if member.bio %}
-                    <p class="bb-team-bio text-muted">{{ member.bio }}</p>
+                    <p class="bb-team-bio text-muted" data-cms-file="_config.yml" data-cms-key="people[{{ forloop.index0 }}].bio">{{ member.bio }}</p>
                     {% endif %}
                     {% if member.social %}
                     <ul class="list-inline social-buttons">

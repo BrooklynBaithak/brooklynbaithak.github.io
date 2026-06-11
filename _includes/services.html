@@ -6,7 +6,7 @@
                 <div class="bb-ornament">✦</div>
                 <h2 class="section-heading">What We Offer</h2>
                 <div class="bb-divider-gold"></div>
-                <h3 class="section-subheading text-muted">{{ site.data.services.subheading }}</h3>
+                <h3 class="section-subheading text-muted" data-cms-file="_data/services.yml" data-cms-key="services.subheading">{{ site.data.services.subheading }}</h3>
             </div>
         </div>
         <div class="row bb-services-tabs">
@@ -19,17 +19,17 @@
                             <i class="fa {{ group.icon }} fa-stack-1x fa-inverse"></i>
                         </span>
                     </div>
-                    <h3 class="service-heading">{{ group.heading }}</h3>
+                    <h3 class="service-heading" data-cms-file="_data/services.yml" data-cms-key="services.groups[{{ forloop.index0 }}].heading">{{ group.heading }}</h3>
                     <div class="bb-service-list">
                         {% for item in group.items %}
                         <div class="bb-service-item">
                             <i class="fa fa-check-circle"></i>
-                            <span>{{ item }}</span>
+                            <span data-cms-file="_data/services.yml" data-cms-key="services.groups[{{ forloop.parentloop.index0 }}].items[{{ forloop.index0 }}]">{{ item }}</span>
                         </div>
                         {% endfor %}
                     </div>
                     {% if group.cta_text %}
-                    <a href="{{ group.cta_url }}" class="btn btn-xl btn-sm-services">{{ group.cta_text }}</a>
+                    <a href="{{ group.cta_url }}" class="btn btn-xl btn-sm-services" data-cms-file="_data/services.yml" data-cms-key="services.groups[{{ forloop.index0 }}].cta_text">{{ group.cta_text }}</a>
                     {% endif %}
                 </div>
             </div>

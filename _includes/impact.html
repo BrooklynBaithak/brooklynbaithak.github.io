@@ -7,15 +7,15 @@
                     <div class="bb-ornament bb-ornament-light">✦</div>
                     <h2 class="section-heading bb-light-heading">Our Impact</h2>
                     <div class="bb-divider-light"></div>
-                    <h3 class="section-subheading bb-light-subheading">{{ site.data.impact.subheading }}</h3>
+                    <h3 class="section-subheading bb-light-subheading" data-cms-file="_data/impact.yml" data-cms-key="impact.subheading">{{ site.data.impact.subheading }}</h3>
                 </div>
             </div>
             <div class="row bb-stats-row">
                 {% for stat in site.data.impact.stats %}
                 <div class="col-md-3 col-sm-6">
                     <div class="bb-stat-card">
-                        <div class="bb-stat-number">{{ stat.number }}</div>
-                        <div class="bb-stat-label">{{ stat.label }}</div>
+                        <div class="bb-stat-number" data-cms-file="_data/impact.yml" data-cms-key="impact.stats[{{ forloop.index0 }}].number">{{ stat.number }}</div>
+                        <div class="bb-stat-label" data-cms-file="_data/impact.yml" data-cms-key="impact.stats[{{ forloop.index0 }}].label">{{ stat.label }}</div>
                         <div class="bb-stat-icon"><i class="fa {{ stat.icon }}"></i></div>
                     </div>
                 </div>
@@ -26,9 +26,9 @@
                 <div class="col-md-4">
                     <div class="bb-testimonial">
                         <div class="bb-quote-mark">"</div>
-                        <p>"{{ testimonial.quote }}"</p>
+                        <p data-cms-file="_data/testimonials.yml" data-cms-key="testimonials[{{ forloop.index0 }}].quote">"{{ testimonial.quote }}"</p>
                         <div class="bb-testimonial-author">
-                            <strong>— {{ testimonial.author }}</strong>, {{ testimonial.role }}
+                            <strong data-cms-file="_data/testimonials.yml" data-cms-key="testimonials[{{ forloop.index0 }}].author">— {{ testimonial.author }}</strong>, <span data-cms-file="_data/testimonials.yml" data-cms-key="testimonials[{{ forloop.index0 }}].role">{{ testimonial.role }}</span>
                         </div>
                     </div>
                 </div>

@@ -11,9 +11,9 @@
         </div>
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1">
-                <div class="bb-faq-grid">
+                <div class="bb-faq-grid" data-cms-list="faq" data-cms-file="_data/faq.yml">
                     {% for item in site.data.faq %}
-                    <div class="bb-faq-item">
+                    <div class="bb-faq-item" data-cms-item="{{ forloop.index0 }}">
                         <div class="bb-faq-question">
                             <i class="fa fa-question-circle bb-faq-icon"></i>
                             <h4 data-cms-file="_data/faq.yml" data-cms-key="faq[{{ forloop.index0 }}].question">{{ item.question }}</h4>

@@ -10,27 +10,27 @@
             </div>
         </div>
         {% if site.data.events.size > 0 %}
-        <div class="row bb-events-grid">
+        <div class="row bb-events-grid" data-cms-list="events" data-cms-file="_data/events.yml">
             {% for event in site.data.events %}
-            <div class="col-md-4">
+            <div class="col-md-4" data-cms-item="{{ forloop.index0 }}">
                 <div class="bb-event-card{% if event.featured %} bb-event-featured{% endif %}">
                     {% if event.featured %}
                     <div class="bb-featured-badge">Featured</div>
                     {% endif %}
                     <div class="bb-event-date-badge">
-                        <span class="bb-event-month">{{ event.month }}</span>
-                        <span class="bb-event-day">{{ event.day }}</span>
-                        <span class="bb-event-year">{{ event.year }}</span>
+                        <span class="bb-event-month" data-cms-file="_data/events.yml" data-cms-key="events[{{ forloop.index0 }}].month">{{ event.month }}</span>
+                        <span class="bb-event-day" data-cms-file="_data/events.yml" data-cms-key="events[{{ forloop.index0 }}].day">{{ event.day }}</span>
+                        <span class="bb-event-year" data-cms-file="_data/events.yml" data-cms-key="events[{{ forloop.index0 }}].year">{{ event.year }}</span>
                     </div>
                     <div class="bb-event-details">
-                        <h4 class="bb-event-title">{{ event.title }}</h4>
-                        <p class="bb-event-meta"><i class="fa fa-map-marker"></i> {{ event.location }}</p>
-                        <p class="bb-event-meta"><i class="fa fa-clock-o"></i> {{ event.time }}</p>
-                        <p class="bb-event-description">{{ event.description }}</p>
+                        <h4 class="bb-event-title" data-cms-file="_data/events.yml" data-cms-key="events[{{ forloop.index0 }}].title">{{ event.title }}</h4>
+                        <p class="bb-event-meta"><i class="fa fa-map-marker"></i> <span data-cms-file="_data/events.yml" data-cms-key="events[{{ forloop.index0 }}].location">{{ event.location }}</span></p>
+                        <p class="bb-event-meta"><i class="fa fa-clock-o"></i> <span data-cms-file="_data/events.yml" data-cms-key="events[{{ forloop.index0 }}].time">{{ event.time }}</span></p>
+                        <p class="bb-event-description" data-cms-file="_data/events.yml" data-cms-key="events[{{ forloop.index0 }}].description">{{ event.description }}</p>
                         <div class="bb-event-price">
-                            <span class="bb-price-tag">{{ event.price }}</span>
+                            <span class="bb-price-tag" data-cms-file="_data/events.yml" data-cms-key="events[{{ forloop.index0 }}].price">{{ event.price }}</span>
                         </div>
-                        <a href="{{ event.url }}" target="_blank" class="btn btn-xl bb-btn-event">Get Tickets</a>
+                        <a href="{{ event.url }}" target="_blank" class="btn btn-xl bb-btn-event" data-cms-file="_data/events.yml" data-cms-key="events[{{ forloop.index0 }}].url">Get Tickets</a>
                     </div>
                 </div>
             </div>
