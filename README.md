@@ -33,7 +33,6 @@ Once logged in, you will see the CMS Dashboard. On the left sidebar, you'll find
 4. The website will automatically rebuild behind the scenes, and your changes will be live in a couple of minutes!
 
 > ![Screenshot of Publish Button](docs/screenshots/publish.png)
-> *(Please replace `docs/screenshots/publish.png` with an actual screenshot of the publish button)*
 
 ## Need Help?
 If you run into any issues logging in, please contact the site administrator to verify your Netlify Identity access.

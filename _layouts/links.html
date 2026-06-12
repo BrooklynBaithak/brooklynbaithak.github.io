@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site.data.links.title | default: site.title }} - Links</title>
+    <meta name="description" content="{{ site.data.links.description | default: site.description }}">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="{{ "/css/links.css" | relative_url }}">
+    <style>
+        /* Staggered animation on load */
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-image-container, .profile-title, .profile-description {
+            animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+        }
+
+        .profile-title { animation-delay: 0.1s; }
+        .profile-description { animation-delay: 0.2s; }
+
+        .link-item {
+            animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+        }
+
+        {% for link in site.data.links.links %}
+        .link-item:nth-child({{ forloop.index }}) {
+            animation-delay: {{ forloop.index0 | times: 0.1 | plus: 0.3 }}s;
+        }
+        {% endfor %}
+
+    </style>
+</head>
+<body>
+    <div class="links-container">
+        <div class="top-actions">
+            <button id="qr-btn" class="icon-btn" aria-label="QR Code" title="View QR Code">
+                <i class="fas fa-qrcode"></i>
+            </button>
+            <button id="share-btn" class="icon-btn" aria-label="Share" title="Share Page">
+                <i class="fas fa-share-alt"></i>
+            </button>
+        </div>
+
+        {% if site.data.links.profile_image %}
+        <div class="profile-image-container">
+            <img src="{{ site.data.links.profile_image | relative_url }}" alt="{{ site.data.links.title }}" class="profile-image">
+        </div>
+        {% endif %}
+        
+        <h1 class="profile-title">{{ site.data.links.title }}</h1>
+        
+        {% if site.data.links.description %}
+        <p class="profile-description">{{ site.data.links.description }}</p>
+        {% endif %}
+
+        <a href="mailto:brooklynbaithak@gmail.com?subject=Subscribe to Newsletter" class="subscribe-btn">
+            Subscribe
+        </a>
+
+        <div class="links-wrapper">
+            {% for link in site.data.links.links %}
+            <a href="{{ link.url }}" class="link-item" target="_blank" rel="noopener noreferrer">
+                {% if link.icon %}
+                    <i class="{{ link.icon }}"></i>
+                {% else %}
+                    {% assign lowercase_title = link.title | downcase %}
+                    {% if lowercase_title contains 'instagram' %}
+                        <i class="fab fa-instagram"></i>
+                    {% elsif lowercase_title contains 'spotify' %}
+                        <i class="fab fa-spotify"></i>
+                    {% elsif lowercase_title contains 'youtube' %}
+                        <i class="fab fa-youtube"></i>
+                    {% elsif lowercase_title contains 'website' %}
+                        <i class="fas fa-globe"></i>
+                    {% else %}
+                        <i class="fas fa-link"></i>
+                    {% endif %}
+                {% endif %}
+                <span>{{ link.title }}</span>
+            </a>
+            {% endfor %}
+        </div>
+
+        <div class="footer">
+            <a href="{{ '/' | relative_url }}">
+                <img src="{{ '/img/logo_transparent.png' | relative_url }}" alt="Brooklyn Baithak Logo" class="bb-logo-small">
+            </a>
+        </div>
+    </div>
+
+    <!-- QR Code Modal -->
+    <div id="qr-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Scan QR Code</h2>
+            <img id="qr-image" src="" alt="QR Code">
+            <p>Scan this code with your phone's camera to view this page on mobile.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const shareBtn = document.getElementById('share-btn');
+            const qrBtn = document.getElementById('qr-btn');
+            const modal = document.getElementById('qr-modal');
+            const closeBtn = document.querySelector('.close-btn');
+            const qrImage = document.getElementById('qr-image');
+
+            // Share functionality
+            shareBtn.addEventListener('click', async () => {
+                const shareData = {
+                    title: document.title,
+                    text: 'Check out Brooklyn Baithak Links!',
+                    url: window.location.href
+                };
+                if (navigator.share) {
+                    try {
+                        await navigator.share(shareData);
+                    } catch (err) {
+                        console.error('Error sharing:', err);
+                    }
+                } else {
+                    // Fallback: Copy to clipboard
+                    navigator.clipboard.writeText(window.location.href).then(() => {
+                        alert('Link copied to clipboard!');
+                    }).catch(err => {
+                        console.error('Failed to copy link: ', err);
+                    });
+                }
+            });
+
+            // QR Modal functionality
+            qrBtn.addEventListener('click', () => {
+                const currentUrl = encodeURIComponent(window.location.href);
+                qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${currentUrl}&color=1a1a1a&margin=0`;
+                modal.classList.add('show');
+            });
+
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('show');
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

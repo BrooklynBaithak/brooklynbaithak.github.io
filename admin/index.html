@@ -6,7 +6,190 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
+  <!-- Responsive Decap CMS UI CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hithismani/responsive-decap@main/dist/responsive.css">
+  <style>
+    @media (max-width: 800px) {
+    /* Force the Editor and Preview Pane to stack vertically */
+      .SplitPane {
+        flex-direction: column !important;
+      }
+      .SplitPane > .Pane {
+        width: 100% !important;
+        max-width: 100% !important;
+        position: static !important;
+      }
+      .SplitPane > .Pane1 {
+        height: 55vh !important;
+        overflow-y: auto !important;
+      }
+      .SplitPane > .Pane2 {
+        height: 45vh !important;
+      }
+      .Resizer {
+        display: none !important;
+      }
+    }
+    
+    /* Fullscreen preview mode for mobile */
+    body.mobile-preview-expanded .SplitPane > .Pane1 {
+      display: none !important;
+    }
+    body.mobile-preview-expanded .SplitPane > .Pane2 {
+      height: 100vh !important;
+    }
+    
+    /* Hide the native toggles */
+    .tucked-toggles {
+      display: none !important;
+    }
+
+    /* Mobile Dock Styling */
+    .bb-mobile-dock {
+      position: fixed;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      display: none;
+      z-index: 10000;
+      padding: 3px;
+      gap: 3px;
+      align-items: center;
+      border: 1px solid #e2e8f0;
+      backdrop-filter: blur(10px);
+    }
+    .bb-dock-btn {
+      background: transparent;
+      border: none;
+      color: #4a5568;
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-weight: 600;
+      font-size: 11px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      transition: all 0.2s;
+    }
+    .bb-dock-btn:hover {
+      background: #f7fafc;
+      color: #c8a951;
+    }
+    .bb-dock-btn.active {
+      background: #c8a951;
+      color: white;
+    }
+    .bb-dock-btn i {
+      font-size: 14px;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Create Mobile Dock
+      var dock = document.createElement("div");
+      dock.className = "bb-mobile-dock";
+      
+      // Create Dock Buttons
+      var btnTogglePreview = document.createElement("button");
+      btnTogglePreview.innerHTML = "<i class='fa fa-eye-slash'></i> Hide Preview";
+      btnTogglePreview.className = "bb-dock-btn";
+
+      var btnExpand = document.createElement("button");
+      btnExpand.innerHTML = "<i class='fa fa-expand'></i> Expand";
+      btnExpand.className = "bb-dock-btn";
+
+      dock.appendChild(btnTogglePreview);
+      dock.appendChild(btnExpand);
+      document.body.appendChild(dock);
+      
+      // Helper to click native buttons
+      function clickNativeButton(titleMatch) {
+        var btns = document.querySelectorAll('button');
+        for (var i = 0; i < btns.length; i++) {
+          var title = (btns[i].getAttribute('title') || '').toLowerCase();
+          if (title.indexOf(titleMatch) !== -1) {
+            btns[i].click();
+            return true;
+          }
+        }
+        return false;
+      }
+
+      // Event Listeners
+      btnTogglePreview.addEventListener("click", function() {
+        clickNativeButton('preview');
+        if (btnTogglePreview.innerHTML.indexOf('Hide') !== -1) {
+          btnTogglePreview.innerHTML = "<i class='fa fa-eye'></i> Show Preview";
+          btnTogglePreview.classList.add("active");
+        } else {
+          btnTogglePreview.innerHTML = "<i class='fa fa-eye-slash'></i> Hide Preview";
+          btnTogglePreview.classList.remove("active");
+        }
+      });
+
+      var isPreviewExpanded = false;
+      btnExpand.addEventListener("click", function() {
+        isPreviewExpanded = !isPreviewExpanded;
+        if (isPreviewExpanded) {
+          btnExpand.innerHTML = "<i class='fa fa-compress'></i> Contract";
+          btnExpand.classList.add("active");
+          document.body.classList.add("mobile-preview-expanded");
+        } else {
+          btnExpand.innerHTML = "<i class='fa fa-expand'></i> Expand";
+          btnExpand.classList.remove("active");
+          document.body.classList.remove("mobile-preview-expanded");
+        }
+      });
+
+      // Visibility Logic
+      var checkWidth = function() {
+        if (window.innerWidth <= 800) {
+          var isEditing = false;
+          var btns = document.querySelectorAll('button');
+          for (var i = 0; i < btns.length; i++) {
+            var title = (btns[i].getAttribute('title') || '').toLowerCase();
+            if (title.indexOf('preview') !== -1) {
+              isEditing = true;
+              break;
+            }
+          }
+          dock.style.display = isEditing ? "flex" : "none";
+        } else {
+          dock.style.display = "none";
+        }
+      };
+      
+      var hideNativeToggles = function() {
+        var btns = document.querySelectorAll('button');
+        var container = null;
+        for (var i = 0; i < btns.length; i++) {
+          var title = (btns[i].getAttribute('title') || '').toLowerCase();
+          if (title.indexOf('scroll sync') !== -1 || title.indexOf('preview') !== -1) {
+            if (btns[i].parentElement && btns[i].parentElement.tagName === 'DIV' && btns[i].parentElement.children.length <= 3) {
+              container = btns[i].parentElement;
+              break;
+            }
+          }
+        }
+        if (container && !container.classList.contains('tucked-toggles')) {
+          container.classList.add('tucked-toggles');
+        }
+      };
+      
+      window.addEventListener('resize', checkWidth);
+      setInterval(function() {
+        checkWidth();
+        hideNativeToggles();
+      }, 1000);
+    });
+  </script>
 </head>
 <body data-netlify-identity-url="https://zesty-biscotti-94698d.netlify.app">
   <!-- Include the script that builds the page and starts Decap CMS -->
@@ -15,11 +198,25 @@
     // Register Stylesheets
     CMS.registerPreviewStyle("/style.css");
     CMS.registerPreviewStyle("/css/bb-custom.css");
+    CMS.registerPreviewStyle("/css/links.css");
     CMS.registerPreviewStyle("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+    CMS.registerPreviewStyle("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css");
     CMS.registerPreviewStyle("https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Lato:wght@300;400;700&family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Droid+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+    // Helper function to inject viewport meta tag into preview iframe
+    function injectViewport() {
+      var iframe = document.querySelector('iframe');
+      if (iframe && iframe.contentDocument && !iframe.contentDocument.querySelector('meta[name="viewport"]')) {
+        var meta = iframe.contentDocument.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, initial-scale=1.0';
+        iframe.contentDocument.head.appendChild(meta);
+      }
+    }
 
     // Define Post Preview Component
     var PostPreview = createClass({
+      componentDidMount: injectViewport,
       render: function() {
         var entry = this.props.entry;
         var getAsset = this.props.getAsset;
@@ -76,6 +273,7 @@
 
     // Define Data Files Preview Component
     var DataPreview = createClass({
+      componentDidMount: injectViewport,
       render: function() {
         var entry = this.props.entry;
         var getAsset = this.props.getAsset;
@@ -316,6 +514,60 @@
               h('div', { className: 'row bb-press-logos' }, quoteElements)
             )
           );
+        } else if (slug === 'links') {
+          var links = entry.getIn(['data', 'links']);
+          var linkElements = [];
+          if (links) {
+            links.forEach(function(link, index) {
+              var title = link.get('title') || '';
+              var url = link.get('url') || '#';
+              var icon = link.get('icon');
+              var iconClass = 'fas fa-link';
+              if (icon) {
+                iconClass = icon;
+              } else {
+                var lowercaseTitle = title.toLowerCase();
+                if (lowercaseTitle.indexOf('instagram') !== -1) iconClass = 'fab fa-instagram';
+                else if (lowercaseTitle.indexOf('spotify') !== -1) iconClass = 'fab fa-spotify';
+                else if (lowercaseTitle.indexOf('youtube') !== -1) iconClass = 'fab fa-youtube';
+                else if (lowercaseTitle.indexOf('website') !== -1) iconClass = 'fas fa-globe';
+              }
+              
+              linkElements.push(
+                h('a', { className: 'link-item', href: url, target: '_blank', key: index },
+                  h('i', { className: iconClass }),
+                  h('span', {}, title)
+                )
+              );
+            });
+          }
+
+          var imgStr = entry.getIn(['data', 'profile_image']);
+          var imgUrl = '';
+          if (imgStr) {
+            var asset = getAsset ? getAsset(imgStr) : imgStr;
+            imgUrl = String(asset);
+            if (typeof imgUrl === 'string' && !imgUrl.startsWith('/') && !imgUrl.startsWith('http') && !imgUrl.startsWith('blob:')) {
+              imgUrl = '/' + imgUrl;
+            }
+          }
+
+          return h('div', { className: 'links-container', style: { margin: '0 auto', minHeight: '100vh', backgroundColor: '#fdf8f0', fontFamily: 'Lato, sans-serif' } },
+            h('div', { className: 'top-actions' },
+              h('button', { className: 'icon-btn' }, h('i', { className: 'fas fa-qrcode' })),
+              h('button', { className: 'icon-btn' }, h('i', { className: 'fas fa-share-alt' }))
+            ),
+            imgUrl ? h('div', { className: 'profile-image-container' },
+              h('img', { src: imgUrl, className: 'profile-image' })
+            ) : null,
+            h('h1', { className: 'profile-title' }, entry.getIn(['data', 'title'])),
+            entry.getIn(['data', 'description']) ? h('p', { className: 'profile-description' }, entry.getIn(['data', 'description'])) : null,
+            h('a', { className: 'subscribe-btn', href: '#' }, 'Subscribe'),
+            h('div', { className: 'links-wrapper' }, linkElements),
+            h('div', { className: 'footer' }, 
+              h('img', { src: '/img/logo_transparent.png', className: 'bb-logo-small' })
+            )
+          );
         } else if (slug === 'story') {
           var timeline = entry.getIn(['data', 'timeline']);
           var timelineElements = [];
@@ -399,6 +651,7 @@
     CMS.registerPreviewTemplate("press", DataPreview);
     CMS.registerPreviewTemplate("story", DataPreview);
     CMS.registerPreviewTemplate("faq", DataPreview);
+    CMS.registerPreviewTemplate("links", DataPreview);
     CMS.registerPreviewTemplate("data", DataPreview);
   </script>
 </body>

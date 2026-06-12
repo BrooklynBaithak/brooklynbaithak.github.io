@@ -149,6 +149,21 @@ collections:
               - { label: "Link URL", name: "url", widget: "string" }
               - { label: "Featured", name: "featured", widget: "boolean", default: false }
 
+      - name: "links"
+        label: "Links Page"
+        file: "_data/links.yml"
+        fields:
+          - { label: "Profile Image", name: "profile_image", widget: "image" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string", required: false }
+          - name: "links"
+            label: "Links"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+              - { label: "Icon Class", name: "icon", widget: "string", required: false, hint: "FontAwesome class, e.g., 'fab fa-instagram' or 'fas fa-globe'" }
+
       - name: "story"
         label: "Our Story"
         file: "_data/story.yml"
