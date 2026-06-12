@@ -4,13 +4,13 @@ groups:
   - heading: For Attendees
     icon: fa-users
     featured: false
-    body: >
-      - Intimate, living room–style concerts in Brooklyn homes and community
+    body: >-
+      * Intimate, living room–style concerts in Brooklyn homes and community
       spaces
 
-      - Direct access to talented emerging South Asian artists
+      * Direct access to talented emerging South Asian artists
 
-      - A welcoming, inclusive community of music lovers, yipeee
+      * A welcoming, inclusive community of music lovers
   - heading: For Performers
     icon: fa-music
     featured: true
